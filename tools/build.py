@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "src"
 HERO = ROOT / "assets" / "img" / "hero"
 FUENTES = ROOT / "_fuentes_instagram"
-VERSION = "1.1.1"
+VERSION = "1.1.4"
 
 WA_NUMBER = "34607803222"
 PHONE = "607 80 32 22"

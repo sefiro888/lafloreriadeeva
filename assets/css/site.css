@@ -381,7 +381,7 @@ p { margin: 0 0 1.1em; }
 .facts li .i { color: var(--rose); width: 22px; height: 22px; margin-top: 2px; }
 .facts .ink { position: absolute; right: -16px; bottom: -30px; width: 110px; opacity: .25; }
 .facts .btn { position: relative; z-index: 1; }
-@media (max-width: 900px) { .intro { grid-template-columns: 1fr; } .facts { position: static; } }
+@media (max-width: 900px) { .intro { grid-template-columns: 1fr; } .facts { position: relative; top: auto; } }
 
 /* bloque partido imagen + texto */
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(36px, 6vw, 96px); align-items: center; }
@@ -731,4 +731,12 @@ p { margin: 0 0 1.1em; }
   .quotes { grid-auto-columns: 84%; }
   .wa-float { width: 54px; height: 54px; right: 14px; bottom: 14px; }
   .to-top { right: 19px; bottom: 80px; }
+}
+@media (max-width: 900px) {
+  .reveal-l, .reveal-r { transform: translateY(30px); }
+  .hero-ink { right: 0; }
+}
+@media (max-width: 900px) {
+  .split--rev .split-media .ink { right: -14px; left: auto; }
+  .split-media .ink { left: -14px; }
 }
