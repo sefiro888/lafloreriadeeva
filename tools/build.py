@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "src"
 HERO = ROOT / "assets" / "img" / "hero"
 FUENTES = ROOT / "_fuentes_instagram"
-VERSION = "1.1.4"
+VERSION = "1.2.0"
 
 WA_NUMBER = "34607803222"
 PHONE = "607 80 32 22"
@@ -33,6 +33,26 @@ IG = "https://www.instagram.com/lafloreriadeva/"
 FB = "https://www.facebook.com/profile.php?id=100088728496492"
 TT = "https://www.tiktok.com/@lafloreriadeva"
 MAPS = "https://www.google.com/maps/search/?api=1&query=La+Floreria+de+Eva+Mercado+de+los+Pinos+Manises"
+
+SITE_URL = "https://sefiro888.github.io/lafloreriadeeva/"
+
+# Texto de la vista previa al compartir por WhatsApp (título, descripción)
+SHARE = {
+    "index": ("La Florería de Eva 🌸 Flores que no se marchitan", "Jardines verticales de musgo, cúpulas con rosas eternas, muñecas de macramé y detalles falleros. Todo hecho a mano en Manises · Envíos a toda España."),
+    "jardines-verticales": ("Jardines verticales de musgo 🌿 La Florería de Eva", "Un trozo de bosque en tu pared: musgo preservado que no se riega, no necesita luz y dura años. Hecho a mano en Manises."),
+    "espacios": ("Decoración floral para tu negocio 🌿 La Florería de Eva", "Restaurantes, hoteles y oficinas que respiran verde sin mantenimiento. Pide visita y presupuesto sin compromiso."),
+    "cupulas-y-rosas-eternas": ("Cúpulas con rosa eterna 🌹 La Florería de Eva", "La rosa de La Bella y la Bestia, de verdad: preservada, con musgo, luces y nombre grabado. Desde 20 €."),
+    "flor-seca-y-eucalipto": ("Flor seca y eucalipto 🌾 La Florería de Eva", "Jarrones de pampa, paniculata y eucalipto que perfuman y decoran durante años, a juego con tu casa."),
+    "munecas-artesanas": ("Muñecas de macramé hechas a mano 🧶 La Florería de Eva", "Novios, comuniones y parejitas tejidas nudo a nudo, con su ramito de flor seca. Personalizables."),
+    "fallas": ("Colección fallera 2027 ❤️‍🔥 La Florería de Eva", "Muñequitas, cúpulas y cuadros con brocado valenciano y la Senyera, con la tela de tu traje. Desde 18 € · Descuento para comisiones."),
+    "bodas": ("Ramos de novia que no se marchitan 💍 La Florería de Eva", "Ramos de flor preservada para guardar toda la vida, rosas eternas para la pedida y detalles para tu boda."),
+    "comuniones-y-fiestas": ("Comuniones y fiestas 🌸 La Florería de Eva", "Coronas de flores, ramos y la decoración del portal y el coche en un solo pack. Todo a juego, sin dolores de cabeza."),
+    "letras-y-personalizados": ("Letras florales y regalos con nombre ✨ La Florería de Eva", "Iniciales cubiertas de flores, con o sin luces, carteles de madera y regalos con dedicatoria."),
+    "fechas-especiales": ("Un detalle para cada fecha 🎁 La Florería de Eva", "San Valentín, Día de la Madre, Todos los Santos y Navidad: colecciones hechas a mano que no caducan."),
+    "sobre-eva": ("Conoce a Eva 🌸 La Florería de Manises", "La artista floral detrás de cada pieza: jardines expuestos en Albarracín y Manises, y 4,9 ★ en Google."),
+    "galeria": ("Galería de creaciones 📸 La Florería de Eva", "Casi 150 trabajos reales hechos a mano: jardines, cúpulas, muñecas, fallas, bodas y mucho más."),
+    "encargos": ("Haz tu encargo 💬 La Florería de Eva", "Escríbele por WhatsApp al 607 80 32 22 o pásate por el Mercado de los Pinos de Manises. Envíos a toda España."),
+}
 
 # --------------------------------------------------------------------------
 # Navegación
@@ -507,7 +527,9 @@ def footer():
 def page(meta, body, name):
     title = meta["title"]
     desc = meta["description"]
-    og = f"assets/img/hero/{name}.webp" if not meta.get("slides") else f"assets/img/hero/{name}-1.webp"
+    url = SITE_URL + ("" if name == "index" else f"{name}.html")
+    og = f"{SITE_URL}assets/img/compartir/{name}.jpg"
+    stitle, sdesc = SHARE.get(name, (title, desc))
     return f'''<!doctype html>
 <html lang="es">
 <head>
@@ -516,12 +538,23 @@ def page(meta, body, name):
 <title>{title}</title>
 <meta name="description" content="{html.escape(desc)}">
 <meta name="theme-color" content="#1f1b16">
+<link rel="canonical" href="{url}">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_ES">
-<meta property="og:site_name" content="La Florería de Eva">
-<meta property="og:title" content="{html.escape(title)}">
-<meta property="og:description" content="{html.escape(desc)}">
+<meta property="og:site_name" content="La Florería de Eva · Manises">
+<meta property="og:url" content="{url}">
+<meta property="og:title" content="{html.escape(stitle)}">
+<meta property="og:description" content="{html.escape(sdesc)}">
 <meta property="og:image" content="{og}">
+<meta property="og:image:secure_url" content="{og}">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{html.escape(stitle)}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{html.escape(stitle)}">
+<meta name="twitter:description" content="{html.escape(sdesc)}">
+<meta name="twitter:image" content="{og}">
 <link rel="icon" href="favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/img/brand/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -44,6 +44,7 @@ Tipografías: Fraunces (títulos), Manrope (texto) y Allura (la letra caligráfi
   python tools/build.py
   ```
 
+- `tools/make_share.py`: genera las tarjetas para compartir por WhatsApp (`assets/img/compartir/`, 1200 × 630, con logotipo, título y foto). Los textos de la vista previa están en el diccionario `SHARE` de `tools/build.py`.
 - `tools/make_galeria.py`: regenera `src/galeria.html` con las fotos clasificadas por colección.
 - `assets/css/site.css` y `assets/js/site.js`: diseño e interacción.
 - `assets/img/ig/` (fotos de Instagram a 1080 px), `assets/img/thumb/` (miniaturas), `assets/img/whatsapp/` (catálogo), `assets/img/hero/` (cabeceras), `assets/img/brand/` (logotipo).
